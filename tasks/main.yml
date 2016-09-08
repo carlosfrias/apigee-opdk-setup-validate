@@ -1,0 +1,24 @@
+---
+# tasks file for opdk-setup-validate
+
+- name: Install Apigee Validate
+  shell: '{{ apigee_service }} apigee-validate install'
+
+- name: Create apigee-validate.conf file
+  template:
+    src: apigee-validate.conf.j2
+    dest: '{{ apigee_validate_config_file }}'
+    mode: 0644
+    owner: '{{ opdk_user_name }}'
+    group: '{{ opdk_group_name }}'
+
+- name: Validate OPDK Installation
+  expect:
+    command: '{{ apigee_service }} apigee-validate setup -f {{ apigee_validate_config_file }}'
+    responses:
+      '(?i)Press a key:': '\n'
+  register: status
+
+- name: Validate OPDK Installation Report
+  debug:
+    var: status
