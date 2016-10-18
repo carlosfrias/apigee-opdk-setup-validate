@@ -4,13 +4,16 @@
 - name: Install Apigee Validate
   shell: '{{ apigee_service }} apigee-validate install'
 
+- name: Remove all apigee-validate
+  file:
+    path: '{{ apigee_validate_config_file }}'
+    state: absent
+
 - name: Create apigee-validate.conf file
   template:
     src: apigee-validate.conf.j2
     dest: '{{ apigee_validate_config_file }}'
     mode: 0644
-    owner: '{{ opdk_user_name }}'
-    group: '{{ opdk_group_name }}'
 
 - name: Validate OPDK Installation
   expect:
