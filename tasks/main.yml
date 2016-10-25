@@ -9,6 +9,16 @@
     path: '{{ apigee_validate_config_file }}'
     state: absent
 
+- name: Check for admin email
+  fail:
+    msg: "Admin email must be provided"
+  when: opdk_user_email is not defined
+
+- name: Check for admin password
+  fail:
+    msg: "Admin password must be provided"
+  when: opdk_user_pass is not defined
+
 - name: Create apigee-validate.conf file
   template:
     src: apigee-validate.conf.j2
