@@ -30,8 +30,9 @@
     command: '{{ apigee_service }} apigee-validate setup -f {{ apigee_validate_config_file }}'
     responses:
       '(?i)Press a key:': '\n'
-  register: status
+  when: opdk_version | version_compare('4.16.09', '<')
 
-- name: Validate OPDK Installation Report
-  debug:
-    var: status
+- name: Validate OPDK Installation
+  shell: '{{ apigee_service }} apigee-validate setup -f {{ apigee_validate_config_file }}'
+#    responses:
+#      '(?i)Press a key:': '\n'
