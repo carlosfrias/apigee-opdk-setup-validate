@@ -34,5 +34,3 @@
 
 - name: Validate OPDK Installation
   shell: '{{ apigee_service }} apigee-validate setup -f {{ apigee_validate_config_file }}'
-#    responses:
-#      '(?i)Press a key:': '\n'

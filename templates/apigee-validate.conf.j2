@@ -18,7 +18,7 @@ REGION=dc-3
 {% else %}
 REGION=Please update the region
 {% endif %}
-MP_POD={{ mp_pod }}
+MP_POD={{ opdk_mp_pod }}
 {% if groups['dc-1'] is defined and inventory_hostname in groups['dc-1'] %}
 MP_IP='{{ hostvars[groups['dc-1-rmp'][0]][interface_name].ipv4.address }}'
 {% elif groups['dc-2'] is defined and inventory_hostname in groups['dc-2'] %}
