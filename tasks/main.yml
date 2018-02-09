@@ -19,21 +19,23 @@
     msg: "Admin password must be provided"
   when: opdk_user_pass is not defined
 
-- name: Create apigee-validate.conf file
+- block:
+  - name: Create apigee-validate.conf file
+    template:
+      src: apigee-validate.conf.j2
+      dest: '{{ apigee_validate_config_file }}'
+      owner: '{{ opdk_user_name }}'
+      group: '{{ opdk_group_name }}'
+      mode: 0644
+
+  - name: Validate OPDK Installation
+    expect:
+      command: '{{ apigee_service }} apigee-validate setup -f {{ apigee_validate_config_file }}'
+      responses:
+        '(?i)Press a key:': '\n'
+    when: opdk_version | version_compare('4.16.09', '<')
+
+  - name: Validate OPDK Installation
+    shell: '{{ apigee_service }} apigee-validate setup -f {{ apigee_validate_config_file }}'
+
   become: yes
-  template:
-    src: apigee-validate.conf.j2
-    dest: '{{ apigee_validate_config_file }}'
-    owner: '{{ opdk_user_name }}'
-    group: '{{ opdk_group_name }}'
-    mode: 0644
-
-- name: Validate OPDK Installation
-  expect:
-    command: '{{ apigee_service }} apigee-validate setup -f {{ apigee_validate_config_file }}'
-    responses:
-      '(?i)Press a key:': '\n'
-  when: opdk_version | version_compare('4.16.09', '<')
-
-- name: Validate OPDK Installation
-  shell: '{{ apigee_service }} apigee-validate setup -f {{ apigee_validate_config_file }}'
