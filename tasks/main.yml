@@ -21,12 +21,11 @@
 
 - name: Create apigee-validate.conf file
   become: yes
-  owner: '{{ opdk_user_name }}'
-  group: '{{ opdk_group_name }}'
-  mode: 0655
   template:
     src: apigee-validate.conf.j2
     dest: '{{ apigee_validate_config_file }}'
+    owner: '{{ opdk_user_name }}'
+    group: '{{ opdk_group_name }}'
     mode: 0644
 
 - name: Validate OPDK Installation
