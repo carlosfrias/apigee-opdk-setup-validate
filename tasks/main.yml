@@ -5,6 +5,7 @@
   shell: '{{ apigee_service }} apigee-validate install'
 
 - name: Remove all apigee-validate
+  become: yes
   file:
     path: '{{ apigee_validate_config_file }}'
     state: absent
