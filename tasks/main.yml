@@ -30,11 +30,11 @@
 
 - name: Validate OPDK Installation
   expect:
-    command: {{ apigee_service | quote }} apigee-validate setup -f {{ apigee_validate_config_file }}
+    command: '/opt/apigee/apigee-service/bin/apigee-service apigee-validate setup -f {{ apigee_validate_config_file }}'
     responses:
       '(?i)Press a key:': '\n'
   when: opdk_version | version_compare('4.16.09', '<')
 
 - name: Validate OPDK Installation
-  shell: {{ apigee_service  | quote }} apigee-validate setup -f {{ apigee_validate_config_file }}
+  shell: '/opt/apigee/apigee-service/bin/apigee-service apigee-validate setup -f {{ apigee_validate_config_file }}'
 
