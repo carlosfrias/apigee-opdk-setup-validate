@@ -2,7 +2,7 @@
 # tasks file for apigee-opdk-setup-validate
 
 - name: Install Apigee Validate
-  shell: '{{ apigee_service }} apigee-validate install'
+  shell: '/opt/apigee/apigee-service/bin/apigee-service apigee-validate install'
 
 - name: Remove all apigee-validate
   become: yes
