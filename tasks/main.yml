@@ -20,13 +20,23 @@
     msg: "Admin password must be provided"
   when: opdk_user_pass is not defined
 
-- name: Create apigee-validate.conf file
+- name: Create apigee-validate.conf file for RMP
   become: true
   template:
-    src: apigee-validate.conf.j2
+    src: apigee-validate-rmp.conf.j2
     dest: '{{ apigee_validate_config_file }}'
     owner: '{{ opdk_user_name }}'
     group: '{{ opdk_group_name }}'
+  when: groups['dc-1-rmp'] is defined
+
+- name: Create apigee-validate.conf file for Router separate from MP
+  become: true
+  template:
+    src: apigee-validate-r-mp.conf.j2
+    dest: '{{ apigee_validate_config_file }}'
+    owner: '{{ opdk_user_name }}'
+    group: '{{ opdk_group_name }}'
+  when: groups['r'] is defined and groups['mp']
 
 - name: Validate OPDK Installation
   expect:
