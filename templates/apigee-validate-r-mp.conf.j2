@@ -20,21 +20,21 @@ REGION=Please update the region
 {% endif %}
 MP_POD={{ opdk_mp_pod }}
 {% if groups['dc-1'] is defined and inventory_hostname in groups['dc-1'] %}
-MP_IP='{{ hostvars[groups['dc-1-rmp'][0]][interface_name].ipv4.address }}'
+MP_IP='{{ hostvars[groups['dc-1-mp'][0]][interface_name].ipv4.address }}'
 {% elif groups['dc-2'] is defined and inventory_hostname in groups['dc-2'] %}
-MP_IP='{{ hostvars[groups['dc-2-rmp'][0]][interface_name].ipv4.address }}'
+MP_IP='{{ hostvars[groups['dc-2-mp'][0]][interface_name].ipv4.address }}'
 {% elif groups['dc-3'] is defined and inventory_hostname in groups['dc-3'] %}
-MP_IP='{{ hostvars[groups['dc-3-rmp'][0]][interface_name].ipv4.address }}'
+MP_IP='{{ hostvars[groups['dc-3-mp'][0]][interface_name].ipv4.address }}'
 {% else %}
 MP_IP=please update the mp ip address
 {% endif %}
 MP_PORT={{ mp_ext_mgmt_port }}
 {% if groups['dc-1'] is defined and inventory_hostname in groups['dc-1'] %}
-HOST_ALIAS='{{ groups['dc-1-rmp'] | join(" ") }}'
+HOST_ALIAS='{{ groups['dc-1-r'] | join(" ") }}'
 {% elif groups['dc-2'] is defined and inventory_hostname in groups['dc-2'] %}
-HOST_ALIAS='{{ groups['dc-2-rmp'] | join(" ") }}'
+HOST_ALIAS='{{ groups['dc-2-r'] | join(" ") }}'
 {% elif groups['dc-3'] is defined and inventory_hostname in groups['dc-3'] %}
-HOST_ALIAS="{{ groups['dc-3-rmp'] | join(' ') }}"
+HOST_ALIAS="{{ groups['dc-3-r'] | join(' ') }}"
 {% else %}
 HOST_ALIAS=Neither a dc-1 or dc-2 inventory group was defined
 {% endif %}
