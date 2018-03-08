@@ -20,18 +20,18 @@ REGION=Please update the region
 {% endif %}
 MP_POD={{ opdk_mp_pod }}
 {% if groups['dc-1'] is defined and inventory_hostname in groups['dc-1'] %}
-    {% if groups['dc-1-rmp'][0] is defined  %}
+    {% if groups['dc-1-rmp'] is defined  %}
         MP_IP='{{ hostvars[groups['dc-1-rmp'][0]][interface_name].ipv4.address }}'
-    {% elif groups['dc-2-rmp'][0] is defined and inventory_hostname in groups['dc-2'] %}
+    {% elif groups['dc-2-rmp'] is defined and inventory_hostname in groups['dc-2'] %}
         MP_IP='{{ hostvars[groups['dc-2-rmp'][0]][interface_name].ipv4.address }}'
-    {% elif groups['dc-3-rmp'][0] is defined and inventory_hostname in groups['dc-3'] %}
+    {% elif groups['dc-3-rmp'] is defined and inventory_hostname in groups['dc-3'] %}
         MP_IP='{{ hostvars[groups['dc-3-rmp'][0]][interface_name].ipv4.address }}'
     {% endif %}
-    {% if groups['dc-1-mp'][0] is defined  %}
+    {% if groups['dc-1-mp'] is defined  %}
         MP_IP='{{ hostvars[groups['dc-1-mp'][0]][interface_name].ipv4.address }}'
-    {% elif groups['dc-2-mp'][0] is defined and inventory_hostname in groups['dc-2'] %}
+    {% elif groups['dc-2-mp'] is defined and inventory_hostname in groups['dc-2'] %}
         MP_IP='{{ hostvars[groups['dc-2-mp'][0]][interface_name].ipv4.address }}'
-    {% elif groups['dc-3-mp'][0] is defined and inventory_hostname in groups['dc-3'] %}
+    {% elif groups['dc-3-mp'] is defined and inventory_hostname in groups['dc-3'] %}
         MP_IP='{{ hostvars[groups['dc-3-mp'][0]][interface_name].ipv4.address }}'
     {% endif %}
 {% else %}
@@ -39,18 +39,18 @@ MP_POD={{ opdk_mp_pod }}
 {% endif %}
 MP_PORT={{ mp_ext_mgmt_port }}
 {% if groups['dc-1'] is defined and inventory_hostname in groups['dc-1'] %}
-    {% if groups['dc-1-rmp'][0] is defined  %}
+    {% if groups['dc-1-rmp'] | length > 0  %}
         HOST_ALIAS='{{ groups['dc-1-rmp'] | join(" ") }}'
-    {% elif groups['dc-2-rmp'][0] is defined and inventory_hostname in groups['dc-2'] %}
+    {% elif groups['dc-2-rmp'] is defined and inventory_hostname in groups['dc-2'] %}
         HOST_ALIAS='{{ groups['dc-2-rmp'] | join(" ") }}'
-    {% elif groups['dc-3-rmp'][0] is defined and inventory_hostname in groups['dc-3'] %}
+    {% elif groups['dc-3-rmp'] is defined and inventory_hostname in groups['dc-3'] %}
         HOST_ALIAS="{{ groups['dc-3-rmp'] | join(' ') }}"
     {% endif %}
-    {% if groups['dc-1-mp'][0] is defined  %}
+    {% if groups['dc-1-mp'] is defined  %}
         HOST_ALIAS='{{ groups['dc-1-mp'] | join(" ") }}'
-    {% elif groups['dc-2-mp'][0] is defined and inventory_hostname in groups['dc-2'] %}
+    {% elif groups['dc-2-mp'] is defined and inventory_hostname in groups['dc-2'] %}
         HOST_ALIAS='{{ groups['dc-2-mp'] | join(" ") }}'
-    {% elif groups['dc-3-mp'][0] is defined and inventory_hostname in groups['dc-3'] %}
+    {% elif groups['dc-3-mp'] is defined and inventory_hostname in groups['dc-3'] %}
         HOST_ALIAS="{{ groups['dc-3-mp'] | join(' ') }}"
     {% endif %}
 {% else %}
