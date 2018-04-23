@@ -1,19 +1,24 @@
 Apigee OPDK Setup Validate
 =========
 
-This role executes the validation included with the installation of Apigee OPDK.
+This role executes the validation included with the installation of Apigee OPDK. This role will adjust to whether Router
+and Message Processors are defined on a node together or separately. 
 
 Requirements
 ------------
 
-The installation of Apigee OPDK requires root access. Credentials must also be supplied to override the empty placeholders
-provided here. It is recommended that credentials be consolidated into a single credentials.yml file that can be stored 
-separately. It is assumed that files containing credentials are stored in the ~/.apigee folder. 
+The installation of Apigee OPDK requires root access. 
 
 Role Variables
 --------------
 
-Default values for variables are provided by the role apigee-opdk-setup-default-settings.
+| Variable Name | Description |
+| --- | --- |
+| apigee_validate_config_file | Validate configuration file |
+| opdk_user_email | Edge system user email |
+| opdk_user_pass | Edge system user password |
+| opdk_user_name | Edge system user name, should be apigee |
+| opdk_group_name | Edge system user group name, should be apigee |
 
 Dependencies
 ------------
@@ -32,12 +37,13 @@ Example Playbook
 License
 -------
 
-Apache License Version 2.0, January 2004
+Apache 2.0
 
 Author Information
 ------------------
 
 Carlos Frias
+
 <!-- BEGIN Google Required Disclaimer -->
 
 # Not Google Product Clause
