@@ -38,3 +38,4 @@ HOST_ALIAS="{{ groups['dc-3-r'] | join(' ') }}"
 {% else %}
 HOST_ALIAS=Neither a dc-1 or dc-2 inventory group was defined
 {% endif %}
+YES="{{ confirm_delete_org | default('y')}}"
