@@ -38,12 +38,12 @@
     group: '{{ opdk_group_name }}'
   when: groups['r'] is defined and groups['mp']
 
-- name: Validate OPDK Installation
-  expect:
-    command: '/opt/apigee/apigee-service/bin/apigee-service apigee-validate setup -f {{ apigee_validate_config_file }}'
-    responses:
-      '(?i)Press a key:': '\n'
-  when: opdk_version | version_compare('4.16.09', '<')
+#- name: Validate OPDK Installation
+#  expect:
+#    command: '/opt/apigee/apigee-service/bin/apigee-service apigee-validate setup -f {{ apigee_validate_config_file }}'
+#    responses:
+#      '(?i)Press a key:': '\n'
+#  when: opdk_version | version_compare('4.16.09', '<')
 
 - name: Validate OPDK Installation
   shell: '/opt/apigee/apigee-service/bin/apigee-service apigee-validate setup -f {{ apigee_validate_config_file }}'
