@@ -19,6 +19,7 @@ Role Variables
 | opdk_user_pass | Edge system user password |
 | opdk_user_name | Edge system user name, should be apigee |
 | opdk_group_name | Edge system user group name, should be apigee |
+| confirm_delete_org | Will remove the validation org if set to 'y'; default is 'y' |
 
 Dependencies
 ------------
