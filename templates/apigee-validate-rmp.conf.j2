@@ -38,4 +38,4 @@ MP_PORT={{ mp_ext_mgmt_port }}
 {% else %}
     HOST_ALIAS=Neither a dc-1 or dc-2 inventory group was defined
 {% endif %}
-YES="{{ confirm_delete_org | default('y')}}"
+YES="{{ confirm_delete_org }}"

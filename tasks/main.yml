@@ -20,6 +20,18 @@
     msg: "Admin password must be provided"
   when: opdk_user_pass is not defined
 
+- name: Assert validate attribures
+  assert:
+    that:
+    - confirm_delete_org is defined
+    - interface_name is defined
+    - opdk_mp_pod is defined
+    - opdk_user_email is defined
+    - groups['dc-1'] is defined
+    - ms_ext_mgmt_port is defined
+    - mp_ext_mgmt_port is defined
+    - opdk_user_pass is defined
+
 - name: Create apigee-validate.conf file for RMP
   become: true
   template:
