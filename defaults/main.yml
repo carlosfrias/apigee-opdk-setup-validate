@@ -5,5 +5,5 @@ apigee_validate_config_file: '{{ opdk_installer_path }}/apigee-validate.conf'
 confirm_delete_org: 'y'
 ms_ext_mgmt_port: 8080
 mp_ext_mgmt_port: 8082
-
+opdk_mp_pod: 'gateway'
 
