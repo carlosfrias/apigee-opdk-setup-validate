@@ -52,4 +52,8 @@
 
 - name: Validate OPDK Installation
   shell: '/opt/apigee/apigee-service/bin/apigee-service apigee-validate setup -f {{ apigee_validate_config_file }}'
+  environment:
+    http_proxy: "{{ http_proxy }}"
+    https_proxy: "{{ https_proxy }}"
+    no_proxy: "{{ no_proxy }}"
 
