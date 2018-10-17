@@ -32,22 +32,18 @@ MP_PORT={{ mp_ext_mgmt_port }}
 {% if groups['dc-1'] is defined and inventory_hostname in groups['dc-1'] %}
 
 HOST_ALIAS="{{ groups['dc-1-r'] | join(' ') }}"
-VALIDATE_HOST_ALIAS="{{ groups['dc-1-r'] | join(' ') }}"
 
 {% elif groups['dc-2'] is defined and inventory_hostname in groups['dc-2'] %}
 
 HOST_ALIAS="{{ groups['dc-2-r'] | join(' ') }}"
-VALIDATE_HOST_ALIAS="{{ groups['dc-2-r'] | join(' ') }}"
 
 {% elif groups['dc-3'] is defined and inventory_hostname in groups['dc-3'] %}
 
 HOST_ALIAS="{{ groups['dc-3-r'] | join(' ') }}"
-VALIDATE_HOST_ALIAS="{{ groups['dc-3-r'] | join(' ') }}"
 
 {% else %}
 
 HOST_ALIAS="Neither a dc-1 or dc-2 inventory group was defined"
-VALIDATE_HOST_ALIAS="Neither a dc-1 or dc-2 inventory group was defined"
 
 {% endif %}
 YES="{{ confirm_delete_org | default('y')}}"
