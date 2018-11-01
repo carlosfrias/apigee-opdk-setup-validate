@@ -10,16 +10,6 @@
     path: '{{ apigee_validate_config_file }}'
     state: absent
 
-- name: Check for admin email
-  fail:
-    msg: "Admin email must be provided"
-  when: opdk_user_email is not defined
-
-- name: Check for admin password
-  fail:
-    msg: "Admin password must be provided"
-  when: opdk_user_pass is not defined
-
 - name: Assert validate attribures
   assert:
     that:
@@ -27,10 +17,10 @@
     - interface_name is defined
     - opdk_mp_pod is defined
     - opdk_user_email is defined
+    - opdk_user_pass is defined
     - groups['dc-1'] is defined
     - ms_ext_mgmt_port is defined
     - mp_ext_mgmt_port is defined
-    - opdk_user_pass is defined
 
 - name: Create apigee-validate.conf file for RMP
   become: true
@@ -39,7 +29,7 @@
     dest: '{{ apigee_validate_config_file }}'
     owner: '{{ opdk_user_name }}'
     group: '{{ opdk_group_name }}'
-  when: groups['dc-1-rmp'] is defined
+  when: groups['rmp'] is defined
 
 - name: Create apigee-validate.conf file for Router separate from MP
   become: true
