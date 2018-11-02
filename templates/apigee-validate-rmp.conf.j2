@@ -31,15 +31,15 @@ MP_IP=please update the mp ip address
 MP_PORT={{ mp_ext_mgmt_port }}
 {% if groups['dc-1'] is defined and inventory_hostname in groups['dc-1'] %}
 
-HOST_ALIAS="{{ groups['dc-1-rmp'] | join(' ') }}"
+HOST_ALIAS="{{ groups['dc-1-rmp']['private_address'] | join(' ') }}"
 
 {% elif groups['dc-2'] is defined and inventory_hostname in groups['dc-2'] %}
 
-HOST_ALIAS="{{ groups['dc-2-rmp'] | join(' ') }}"
+HOST_ALIAS="{{ groups['dc-2-rmp']['private_address'] | join(' ') }}"
 
 {% elif groups['dc-3'] is defined and inventory_hostname in groups['dc-3'] %}
 
-HOST_ALIAS="{{ groups['dc-3-rmp'] | join(' ') }}"
+HOST_ALIAS="{{ groups['dc-3-rmp']['private_address'] | join(' ') }}"
 
 {% else %}
 
