@@ -21,6 +21,7 @@
     - groups['dc-1'] is defined
     - ms_ext_mgmt_port is defined
     - mp_ext_mgmt_port is defined
+    - region is defined
 
 - name: Create apigee-validate.conf file for RMP
   become: true
