@@ -1,15 +1,5 @@
 ---
 # tasks file for apigee-opdk-setup-validate
-
-- name: Install Apigee Validate
-  shell: '/opt/apigee/apigee-service/bin/apigee-service apigee-validate install'
-
-- name: Remove all apigee-validate
-  become: yes
-  file:
-    path: '{{ apigee_validate_config_file }}'
-    state: absent
-
 - name: Assert validate attribures
   assert:
     that:
@@ -22,6 +12,16 @@
     - ms_ext_mgmt_port is defined
     - mp_ext_mgmt_port is defined
     - region is defined
+    - apigee_validate_config_file is defined
+
+- name: Install Apigee Validate
+  shell: '/opt/apigee/apigee-service/bin/apigee-service apigee-validate install'
+
+- name: Remove all apigee-validate
+  become: yes
+  file:
+    path: '{{ apigee_validate_config_file }}'
+    state: absent
 
 - name: Create apigee-validate.conf file for RMP
   become: true
