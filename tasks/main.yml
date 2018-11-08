@@ -1,6 +1,6 @@
 ---
 # tasks file for apigee-opdk-setup-validate
-- name: Assert validate attribures
+- name: Assert validate attributes
   assert:
     that:
     - confirm_delete_org is defined
@@ -16,20 +16,17 @@
 
 - name: Install Apigee Validate
   shell: '/opt/apigee/apigee-service/bin/apigee-service apigee-validate install'
+  args:
+    create: /opt/apigee/apigee-validate
 
-- name: Remove all apigee-validate configuration file
-  become: true
-  file:
-    path: '{{ apigee_validate_config_file }}'
-    state: absent
-
-- name: Create apigee-validate.conf file for RMP
+- name: Create apigee-validate configuration file for RMP
   become: true
   template:
     src: apigee-validate-rmp.conf.j2
     dest: '{{ apigee_validate_config_file }}'
     owner: '{{ opdk_user_name }}'
     group: '{{ opdk_group_name }}'
+    force: yes
   when: groups['rmp'] is defined
 
 - name: Create apigee-validate.conf file for Router separate from MP
@@ -39,6 +36,7 @@
     dest: '{{ apigee_validate_config_file }}'
     owner: '{{ opdk_user_name }}'
     group: '{{ opdk_group_name }}'
+    force: yes
   when: groups['r'] is defined and groups['mp']
 
 - name: Validate OPDK Installation
