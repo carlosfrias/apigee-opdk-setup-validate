@@ -17,8 +17,8 @@
 - name: Install Apigee Validate
   shell: '/opt/apigee/apigee-service/bin/apigee-service apigee-validate install'
 
-- name: Remove all apigee-validate
-  become: yes
+- name: Remove all apigee-validate configuration file
+  become: true
   file:
     path: '{{ apigee_validate_config_file }}'
     state: absent
