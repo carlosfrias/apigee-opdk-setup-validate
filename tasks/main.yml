@@ -9,7 +9,7 @@
     - opdk_user_email is defined
     - opdk_user_pass is defined
     - groups['dc-1'] is defined
-    - ms_ext_mgmt_port is defined
+    - ms_port is defined
     - mp_ext_mgmt_port is defined
     - region is defined
     - apigee_validate_config_file is defined
