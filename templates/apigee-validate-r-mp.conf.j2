@@ -7,7 +7,7 @@ MSIP={{ hostvars[groups['dc-2-ms'][0]][interface_name].ipv4.address }}
 MSIP={{ hostvars[groups['dc-1-ms'][0]][interface_name].ipv4.address }}
 {% endif %}
 ADMIN_EMAIL={{ opdk_user_email }}
-APIGEE_PORT_HTTP_MS={{ ms_ext_mgmt_port }}
+APIGEE_PORT_HTTP_MS={{ ms_port }}
 APIGEE_ADMINPW={{ opdk_user_pass }}
 {% if groups['dc-1'] is defined and inventory_hostname in groups['dc-1'] %}
 REGION=dc-1
