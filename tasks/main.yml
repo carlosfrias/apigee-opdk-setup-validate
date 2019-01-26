@@ -16,8 +16,6 @@
 
 - name: Install Apigee Validate
   shell: '/opt/apigee/apigee-service/bin/apigee-service apigee-validate install'
-  args:
-    creates: /opt/apigee/apigee-validate
 
 - name: Create apigee-validate configuration file for RMP
   become: true
