@@ -8,7 +8,7 @@
     - opdk_mp_pod is defined
     - opdk_user_email is defined
     - opdk_user_pass is defined
-    - groups['dc-1'] is defined
+    - groups['dc_1'] is defined
     - ms_port is defined
     - mp_ext_mgmt_port is defined
     - region is defined
