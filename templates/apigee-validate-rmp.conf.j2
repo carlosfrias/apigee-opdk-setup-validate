@@ -9,7 +9,7 @@ MSIP={{ hostvars[groups['dc_1_ms'][0]][interface_name].ipv4.address }}
 ADMIN_EMAIL={{ opdk_user_email }}
 APIGEE_PORT_HTTP_MS={{ ms_port }}
 APIGEE_ADMINPW={{ opdk_user_pass }}
-REGION={{ region }}
+REGION=dc-{{ region_num }}
 MP_POD={{ opdk_mp_pod }}
 {% if groups['dc_1'] is defined and inventory_hostname in groups['dc_1'] %}
 MP_IP="{{ hostvars[groups['dc_1_rmp'][0]][interface_name].ipv4.address }}"
