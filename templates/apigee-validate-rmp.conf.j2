@@ -1,11 +1,11 @@
-{% if groups['dc_1'] is defined and inventory_hostname in groups['dc_1'] %}
-MSIP={{ hostvars[groups['dc_1'][0]][interface_name].ipv4.address }}
-{% elif groups['dc_2'] is defined and inventory_hostname in groups['dc_2'] %}
-MSIP={{ hostvars[groups['dc_2_ms'][0]][interface_name].ipv4.address }}
-{% else %}
+{#{% if groups['dc_1'] is defined and inventory_hostname in groups['dc_1'] %}#}
+MSIP={{ local_mgmt_ip }}
+{#{% elif groups['dc_2'] is defined and inventory_hostname in groups['dc_2'] %}#}
+{#MSIP={{ hostvars[groups['dc_2_ms'][0]][interface_name].ipv4.address }}#}
+{#{% else %}#}
 {# Default to the MS in region 1 #}
-MSIP={{ hostvars[groups['dc_1_ms'][0]][interface_name].ipv4.address }}
-{% endif %}
+{#MSIP={{ hostvars[groups['dc_1_ms'][0]][interface_name].ipv4.address }}#}
+{#{% endif %}#}
 ADMIN_EMAIL={{ opdk_user_email }}
 APIGEE_PORT_HTTP_MS={{ ms_port }}
 APIGEE_ADMINPW={{ opdk_user_pass }}
