@@ -1,10 +1,10 @@
 {% if groups['dc_1'] is defined and inventory_hostname in groups['dc_1'] %}
-MSIP={{ hostvars[groups['dc_1_ms'][0]][interface_name].ipv4.address }}
+MSIP={{ hostvars[groups['dc_1_ms'][0]]['private_address'] }}
 {% elif groups['dc_2'] is defined and inventory_hostname in groups['dc_2'] %}
-MSIP={{ hostvars[groups['dc_2_ms'][0]][interface_name].ipv4.address }}
+MSIP={{ hostvars[groups['dc_2_ms'][0]]['private_address'] }}
 {% else %}
 {# Default to the MS in region 1 #}
-MSIP={{ hostvars[groups['dc_1_ms'][0]][interface_name].ipv4.address }}
+MSIP={{ hostvars[groups['dc_1_ms'][0]]['private_address'] }}
 {% endif %}
 ADMIN_EMAIL={{ opdk_user_email }}
 APIGEE_PORT_HTTP_MS={{ ms_port }}
@@ -20,11 +20,11 @@ REGION=Please update the region
 {% endif %}
 MP_POD={{ opdk_mp_pod }}
 {% if groups['dc_1'] is defined and inventory_hostname in groups['dc_1'] %}
-MP_IP="{{ hostvars[groups['dc_1_mp'][0]][interface_name].ipv4.address }}"
+MP_IP="{{ hostvars[groups['dc_1_mp'][0]]['private_address'] }}"
 {% elif groups['dc_2'] is defined and inventory_hostname in groups['dc_2'] %}
-MP_IP="{{ hostvars[groups['dc_2_mp'][0]][interface_name].ipv4.address }}"
+MP_IP="{{ hostvars[groups['dc_2_mp'][0]]['private_address'] }}"
 {% elif groups['dc_3'] is defined and inventory_hostname in groups['dc_3'] %}
-MP_IP="{{ hostvars[groups['dc_3_mp'][0]][interface_name].ipv4.address }}"
+MP_IP="{{ hostvars[groups['dc_3_mp'][0]]['private_address'] }}"
 {% else %}
 MP_IP=please update the mp ip address
 {% endif %}

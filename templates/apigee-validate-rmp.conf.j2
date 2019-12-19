@@ -5,11 +5,11 @@ APIGEE_ADMINPW={{ opdk_user_pass }}
 REGION=dc-{{ region_num }}
 MP_POD={{ opdk_mp_pod }}
 {% if groups['dc_1'] is defined and inventory_hostname in groups['dc_1'] %}
-MP_IP="{{ hostvars[groups['dc_1_rmp'][0]][interface_name].ipv4.address }}"
+MP_IP="{{ hostvars[groups['dc_1_rmp'][0]]['private_address'] }}"
 {% elif groups['dc_2'] is defined and inventory_hostname in groups['dc_2'] %}
-MP_IP="{{ hostvars[groups['dc_2_rmp'][0]][interface_name].ipv4.address }}"
+MP_IP="{{ hostvars[groups['dc_2_rmp'][0]]['private_address'] }}"
 {% elif groups['dc_3'] is defined and inventory_hostname in groups['dc_3'] %}
-MP_IP="{{ hostvars[groups['dc_3_rmp'][0]][interface_name].ipv4.address }}"
+MP_IP="{{ hostvars[groups['dc_3_rmp'][0]]['private_address'] }}"
 {% else %}
 MP_IP=please update the mp ip address
 {% endif %}
