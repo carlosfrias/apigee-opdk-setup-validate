@@ -14,6 +14,11 @@
     - region is defined
     - apigee_validate_config_file is defined
 
+- name: Update cache
+  set_fact:
+    cacheable: true
+    apigee_validate_config_file: "{{ apigee_validate_config_file }}"
+
 - name: Install Apigee Validate
   shell: '/opt/apigee/apigee-service/bin/apigee-service apigee-validate install'
 
